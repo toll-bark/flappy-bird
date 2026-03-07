@@ -1,0 +1,34 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class HandleJumpBehavior : MonoBehaviour
+{
+    public Rigidbody2D rb;
+
+    InputAction jumpAction;
+
+    bool canJump;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        jumpAction = InputSystem.actions.FindAction("Jump");
+        jumpAction.Enable();
+        canJump = true;
+    }
+
+    // Update is called once per frame
+    void Update() 
+    { 
+        if (jumpAction.IsPressed()) OnJumpPress();
+        else OnJumpRelease();
+    }
+
+    public void OnJumpPress() 
+    {
+        if (canJump) rb.linearVelocityY = 15;
+        canJump = false;
+    }
+
+    public void OnJumpRelease() { canJump = true; }
+}
