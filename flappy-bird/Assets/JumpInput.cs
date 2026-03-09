@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class HandleJumpBehavior : MonoBehaviour
+public class JumpInput : MonoBehaviour
 {
     public Rigidbody2D rb;
     public int jumpForce;
@@ -38,6 +38,6 @@ public class HandleJumpBehavior : MonoBehaviour
     public void OnJumpRelease() 
     { 
         canJump = true;
-        rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 0f);
+        // rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 0f);
     }
 }
