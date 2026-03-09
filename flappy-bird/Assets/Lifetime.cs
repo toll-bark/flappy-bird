@@ -9,10 +9,4 @@ public class Lifetime : MonoBehaviour
     {
         IsRunning = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

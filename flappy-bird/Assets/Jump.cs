@@ -5,6 +5,7 @@ public class Jump : MonoBehaviour
 {
     public Rigidbody2D Rb;
     public Lifetime Lifetime;
+    public JumpObserver Observer;
 
     public int jumpForce = 375;
     public float FallMultiplier = 2.5f;
@@ -29,8 +30,8 @@ public class Jump : MonoBehaviour
     {
         if (Lifetime.IsRunning)
         {
-            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier/* - 1*/) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
-            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier/* - 1*/) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
+            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
+            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
 
             if (JumpAction.IsPressed()) OnJumpPress();
             else OnJumpRelease();
@@ -39,11 +40,11 @@ public class Jump : MonoBehaviour
 
     public void OnJumpPress()
     {
-        Physics2D.gravity = Vector2.down * 10;
         if (canJump)
         {
             Rb.linearVelocityY = 0f;
             Rb.AddForce(new() { x = 0, y = jumpForce });
+            Observer.OnNext();
         }
         canJump = false;
     }

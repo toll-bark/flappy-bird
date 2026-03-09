@@ -478,51 +478,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1583929736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1295850060
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1295850061}
-  - component: {fileID: 1295850062}
-  m_Layer: 0
-  m_Name: LifetimeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1295850061
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295850060}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1940202183}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1295850062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295850060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bece72337df8654bb8353edac7dd55a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lifetime
-  IsRunning: 1
 --- !u!1 &1438963035
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,10 +659,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Jump
   Rb: {fileID: 1438963038}
-  Lifetime: {fileID: 1295850062}
+  Lifetime: {fileID: 1940202184}
+  Observer: {fileID: 1940202185}
   jumpForce: 375
   FallMultiplier: 2.5
-  LowJumpMultiplier: 2
+  LowJumpMultiplier: 4
 --- !u!114 &1438963043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8ef4ed33feeea41b56e5d78e7172b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CollisionCheck
-  Lifetime: {fileID: 1295850062}
+  Lifetime: {fileID: 1940202184}
 --- !u!1 &1583929735
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +844,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1940202183}
+  - component: {fileID: 1940202184}
+  - component: {fileID: 1940202185}
+  - component: {fileID: 1940202186}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -907,10 +866,48 @@ Transform:
   m_LocalPosition: {x: -1.06857, y: -1.56745, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1295850061}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1940202184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940202182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bece72337df8654bb8353edac7dd55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lifetime
+  IsRunning: 1
+--- !u!114 &1940202185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940202182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61cf5a49ed79f146887e823022814ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JumpObserver
+  GravityController: {fileID: 1940202186}
+--- !u!114 &1940202186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940202182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847d597a91ff456459f58885088230e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GravityController
+  Gravity: 10
 --- !u!1 &2140129651
 GameObject:
   m_ObjectHideFlags: 0
