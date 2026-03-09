@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class HandleJumpBehavior : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public int jumpForce;
 
     InputAction jumpAction;
 
@@ -26,9 +27,17 @@ public class HandleJumpBehavior : MonoBehaviour
 
     public void OnJumpPress() 
     {
-        if (canJump) rb.linearVelocityY = 15;
+        if (canJump) 
+        {
+            rb.linearVelocityY = 0f;
+            rb.AddForce(new() { x = 0, y = jumpForce }); 
+        }
         canJump = false;
     }
 
-    public void OnJumpRelease() { canJump = true; }
+    public void OnJumpRelease() 
+    { 
+        canJump = true;
+        rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 0f);
+    }
 }
