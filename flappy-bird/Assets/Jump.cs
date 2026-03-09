@@ -30,8 +30,8 @@ public class Jump : MonoBehaviour
     {
         if (Lifetime.IsRunning)
         {
-            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
-            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
+            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier - 1) * Time.deltaTime * Physics2D.gravity; }
+            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity; }
 
             if (JumpAction.IsPressed()) OnJumpPress();
             else OnJumpRelease();
