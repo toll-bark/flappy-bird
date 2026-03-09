@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Jump : MonoBehaviour
 {
     public Rigidbody2D Rb;
+    public Lifetime Lifetime;
 
     public float FallMultiplier = 2.5f;
     public float LowJumpMultiplier = 2f;
@@ -19,13 +20,16 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Rb.linearVelocity.y < 0)
+        if (Lifetime.IsRunning)
         {
-            Rb.linearVelocity += (FallMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
-        } 
-        else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed())
-        {
-            Rb.linearVelocity += (LowJumpMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+            if (Rb.linearVelocity.y < 0)
+            {
+                Rb.linearVelocity += (FallMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+            }
+            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed())
+            {
+                Rb.linearVelocity += (LowJumpMultiplier - 1) * Physics2D.gravity.y * Vector2.up * Time.deltaTime;
+            }
         }
     }
 }

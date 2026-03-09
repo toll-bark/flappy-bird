@@ -6,6 +6,8 @@ public class JumpInput : MonoBehaviour
     public Rigidbody2D rb;
     public int jumpForce;
 
+    public Lifetime Lifetime;
+
     InputAction jumpAction;
 
     bool canJump;
@@ -20,9 +22,12 @@ public class JumpInput : MonoBehaviour
 
     // Update is called once per frame
     void Update() 
-    { 
-        if (jumpAction.IsPressed()) OnJumpPress();
-        else OnJumpRelease();
+    {
+        if (Lifetime.IsRunning)
+        {
+            if (jumpAction.IsPressed()) OnJumpPress();
+            else OnJumpRelease();
+        }
     }
 
     public void OnJumpPress() 
@@ -36,9 +41,5 @@ public class JumpInput : MonoBehaviour
         canJump = false;
     }
 
-    public void OnJumpRelease() 
-    { 
-        canJump = true;
-        // rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 0f);
-    }
+    public void OnJumpRelease() { canJump = true; }
 }
