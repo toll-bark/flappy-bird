@@ -20,6 +20,8 @@ public class Jump : MonoBehaviour
         JumpAction = InputSystem.actions.FindAction("Jump");
         JumpAction.Enable();
         canJump = true;
+
+        Physics2D.gravity = Vector2.zero;
     }
 
     // Update is called once per frame
@@ -27,8 +29,8 @@ public class Jump : MonoBehaviour
     {
         if (Lifetime.IsRunning)
         {
-            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
-            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier - 1) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
+            if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier/* - 1*/) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
+            else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier/* - 1*/) * Physics2D.gravity.y * Time.deltaTime * Vector2.up; }
 
             if (JumpAction.IsPressed()) OnJumpPress();
             else OnJumpRelease();
@@ -37,7 +39,7 @@ public class Jump : MonoBehaviour
 
     public void OnJumpPress()
     {
-        Rb.gravityScale = 1;
+        Physics2D.gravity = Vector2.down * 10;
         if (canJump)
         {
             Rb.linearVelocityY = 0f;
