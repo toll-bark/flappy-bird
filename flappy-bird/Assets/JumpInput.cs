@@ -27,6 +27,7 @@ public class JumpInput : MonoBehaviour
 
     public void OnJumpPress() 
     {
+        rb.gravityScale = 1;
         if (canJump) 
         {
             rb.linearVelocityY = 0f;
