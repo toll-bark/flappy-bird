@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class JumpObserver : MonoBehaviour
 {
+    public Lifetime lifetime;
     public GravityController GravityController;
 
     private bool firstJumpObserved = false;
@@ -15,5 +16,9 @@ public class JumpObserver : MonoBehaviour
         }
     }
 
-    private void ObserveFirstJump() { GravityController.EnableGravity(); }
+    private void ObserveFirstJump() 
+    {
+        lifetime.EnableRuntime();
+        GravityController.EnableGravity(); 
+    }
 }

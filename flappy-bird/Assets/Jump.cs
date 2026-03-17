@@ -32,10 +32,10 @@ public class Jump : MonoBehaviour
         {
             if (Rb.linearVelocity.y < 0) { Rb.linearVelocity += (FallMultiplier - 1) * Time.deltaTime * Physics2D.gravity; }
             else if (Rb.linearVelocity.y > 0 && !JumpAction.IsPressed()) { Rb.linearVelocity += (LowJumpMultiplier - 1) * Time.deltaTime * Physics2D.gravity; }
-
-            if (JumpAction.IsPressed()) OnJumpPress();
-            else OnJumpRelease();
         }
+
+        if (JumpAction.IsPressed()) OnJumpPress();
+        else OnJumpRelease();
     }
 
     public void OnJumpPress()

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - LoseCollider
+  - Obstacle
+  - ObstacleCleanup
   layers:
   - Default
   - TransparentFX

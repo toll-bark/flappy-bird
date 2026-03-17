@@ -6,6 +6,7 @@ public class CollisionCheck : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("LoseCollider")) { Lifetime.IsRunning = false; }
+        if (collision.gameObject.CompareTag("LoseCollider")
+            || collision.gameObject.CompareTag("Obstacle")) { Lifetime.IsRunning = false; }
     }
 }
